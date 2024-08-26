@@ -97,16 +97,59 @@
 #     app.run(debug=True, host='0.0.0.0', port=8000)
 
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-@app.route("/")
+# Initialize the game board
+def initialize_board():
+    return [['' for _ in range(3)] for _ in range(3)]
+
+# Check for a winner
+def check_winner(board):
+    for row in board:
+        if row[0] == row[1] == row[2] and row[0] != '':
+            return row[0]
+    
+    for col in range(3):
+        if board[0][col] == board[1][col] == board[2][col] and board[0][col] != '':
+            return board[0][col]
+    
+    if board[0][0] == board[1][1] == board[2][2] and board[0][0] != '':
+        return board[0][0]
+    
+    if board[0][2] == board[1][1] == board[2][0] and board[0][2] != '':
+        return board[0][2]
+    
+    return None
+
+@app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template('index.html')
+    if request.method == "POST":
+        board = request.form.getlist("board")
+        board = [board[i:i+3] for i in range(0, len(board), 3)]
+    else:
+        board = initialize_board()
+    
+    winner = check_winner(board)
+    if winner:
+        return render_template("index.html", board=board, winner=winner)
+    
+    return render_template("index.html", board=board, winner=None)
+
+@app.route("/move/<int:row>/<int:col>")
+def move(row, col):
+    board = request.args.getlist("board")
+    board = [board[i:i+3] for i in range(0, len(board), 3)]
+    
+    player = 'X' if board[row][col] == '' else ''
+    board[row][col] = player
+    
+    return redirect(url_for('index', board=sum(board, [])))
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=8000)
+
 
 
 

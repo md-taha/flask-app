@@ -4,148 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic-Tac-Toe</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #282c34;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            text-align: center;
-        }
-
-        h1 {
-            margin-bottom: 20px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 100px);
-            grid-template-rows: repeat(3, 100px);
-            gap: 5px;
-        }
-
-        .cell {
-            width: 100px;
-            height: 100px;
-            background-color: #61dafb;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2em;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: background-color 0.3s;
-        }
-
-        .cell:hover {
-            background-color: #21a1f1;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        #restart {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #61dafb;
-            border: none;
-            cursor: pointer;
-            font-size: 1em;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        #restart:hover {
-            background-color: #21a1f1;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Tic-Tac-Toe</h1>
-        <div id="message" class="hidden"></div>
-        <div class="grid">
-            <div class="cell" data-index="0"></div>
-            <div class="cell" data-index="1"></div>
-            <div class="cell" data-index="2"></div>
-            <div class="cell" data-index="3"></div>
-            <div class="cell" data-index="4"></div>
-            <div class="cell" data-index="5"></div>
-            <div class="cell" data-index="6"></div>
-            <div class="cell" data-index="7"></div>
-            <div class="cell" data-index="8"></div>
-        </div>
-        <button id="restart" class="hidden">Restart Game</button>
-    </div>
-
-    <script>
-        const cells = document.querySelectorAll('.cell');
-        const message = document.getElementById('message');
-        const restartButton = document.getElementById('restart');
-        let currentPlayer = 'X';
-        let gameActive = true;
-        let board = Array(9).fill('');
-
-        const winningCombinations = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6]
-        ];
-
-        function checkWinner() {
-            for (const condition of winningCombinations) {
-                const [a, b, c] = condition;
-                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-                    gameActive = false;
-                    message.textContent = `${board[a]} wins!`;
-                    message.classList.remove('hidden');
-                    restartButton.classList.remove('hidden');
-                    return;
-                }
-            }
-
-            if (!board.includes('')) {
-                gameActive = false;
-                message.textContent = "It's a draw!";
-                message.classList.remove('hidden');
-                restartButton.classList.remove('hidden');
-            }
-        }
-
-        function handleCellClick(e) {
-            const index = e.target.getAttribute('data-index');
-            if (board[index] !== '' || !gameActive) return;
-
-            board[index] = currentPlayer;
-            e.target.textContent = currentPlayer;
-            checkWinner();
-
-            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-        }
-
-        function restartGame() {
-            board.fill('');
-            cells.forEach(cell => cell.textContent = '');
-            currentPlayer = 'X';
-            gameActive = true;
-            message.classList.add('hidden');
-            restartButton.classList.add('hidden');
-        }
-
-        cells.forEach(cell => cell.addEventListener('click', handleCellClick));
-        restartButton.addEventListener('click', restartGame);
-    </script>
+    <h1>Tic-Tac-Toe</h1>
+    {% if winner %}
+        <h2>Player {{ winner }} wins!</h2>
+    {% endif %}
+    <form method="POST">
+        <table>
+            {% for i in range(3) %}
+                <tr>
+                    {% for j in range(3) %}
+                        <td>
+                            <a href="{{ url_for('move', row=i, col=j, board=sum(board, [])) }}">
+                                <div class="cell">{{ board[i][j] }}</div>
+                            </a>
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    </form>
 </body>
 </html>
