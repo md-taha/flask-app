@@ -37,10 +37,10 @@
 <body>
     <h1>Tic Tac Toe</h1>
     <div class="board">
-        {% for i, row in enumerate(board) %}
-            {% for j, cell in enumerate(row) %}
+        {% for row in rows %}
+            {% for col in row.cells %}
                 <div class="cell">
-                    <a href="{{ url_for('move', row=i, col=j, board=flattened_board) }}">{{ cell }}</a>
+                    <a href="{{ url_for('move', row=row.index, col=loop.index) }}">{{ col }}</a>
                 </div>
             {% endfor %}
         {% endfor %}

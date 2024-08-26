@@ -103,10 +103,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    # Initialize the board
     board = [[None, None, None], [None, None, None], [None, None, None]]
-    # Flatten the board and pass it to the template
-    flattened_board = [cell for row in board for cell in row]
-    return render_template("index.html", board=board, winner=None, flattened_board=flattened_board)
+    # Prepare data for the template
+    rows = [{'index': i, 'cells': row} for i, row in enumerate(board)]
+    return render_template("index.html", rows=rows, winner=None)
 
 if __name__ == "__main__":
     app.run(debug=True)
+
