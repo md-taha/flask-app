@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
   }
@@ -80,4 +80,172 @@
   .create-note:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  } */
+
+
+
+
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #2b5876, #4e4376);
+  /* Gradient background */
+  font-family: 'Gloria Hallelujah', cursive;
+  min-height: 100vh;
+  padding: 20px;
+  animation: fadeIn 1.5s ease-in-out;
+  /* Fade-in animation */
+}
+
+/* Fade-in animation keyframes */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Container for sticky notes */
+.sticky-notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 800px;
+}
+
+/* Individual note container */
+.note-container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(#f9efaf, #f7e98d);
+  /* Default theme */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transform: scale(1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Hover effect for note container */
+.note-container:hover {
+  transform: scale(1.05);
+  /* Scale-up effect */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  /* More shadow on hover */
+}
+
+/* Note content styling */
+.note-content {
+  padding: 15px;
+  height: calc(100% - 40px);
+  border: none;
+  outline: none;
+}
+
+/* Note actions styling */
+.note-actions {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+/* Delete button styling */
+.delete-note {
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-note:hover {
+  background-color: #d9534f;
+}
+
+/* New note button styling */
+.create-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 120px 'Helvetica', sans-serif;
+  margin: 0 15px;
+  width: 250px;
+  height: 250px;
+  background-color: #fff;
+  color: #888;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.create-note:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Color theme styles */
+.default-theme {
+  background: linear-gradient(#f9efaf, #f7e98d);
+}
+
+.red-theme {
+  background: linear-gradient(#ffcccc, #ff9999);
+}
+
+.blue-theme {
+  background: linear-gradient(#cce0ff, #99c2ff);
+}
+
+.green-theme {
+  background: linear-gradient(#ccffcc, #99ff99);
+}
+
+/* Search input styling */
+#searchInput {
+  margin: 20px 0;
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Optional: Resizing functionality styles */
+.note-resize {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: #f0f0f0;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: nwse-resize;
+}
+
+/* Note categories filter styles */
+.note-category-filter {
+  margin: 20px 0;
+}
+
+/* Hide notes that don't match the search */
+.note-container.hidden {
+  display: none;
+}
