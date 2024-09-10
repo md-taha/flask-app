@@ -1,91 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sticky Notes</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah"/> -->
-
-
-
-
-<!-- <link rel="stylesheet" href="styles.css"> -->
-
-
-
-
-<!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-  </head>
-  <body>
-    <div class="sticky-notes">
-      <div class="note-container">
-        <div class="note-content" contenteditable>
-          Create Sticky Note Using HTML, CSS, and JavaScript.
-        </div>
-        <div class="note-actions">
-          <button class="delete-note" onclick="deleteNote(this)">Delete</button>
-        </div>
-      </div>
-    </div>
-    <div class="create-note" title="New Notes" onclick="createNote()">+</div> -->
-
-
-
-<!-- <script src="script.js"></script> -->
-<!-- <script src="{{ url_for('static', filename='scripts.js') }}"></script> -->
-
-
-
-<!-- <script>
-    function createNote() {
-      const stickyNotes = document.querySelector('.sticky-notes');
-      const noteContainer = document.createElement('div');
-      noteContainer.classList.add('note-container');
-    
-      const noteContent = document.createElement('div');
-      noteContent.classList.add('note-content');
-      noteContent.contentEditable = true;
-      noteContent.textContent = 'New note';
-    
-      const noteActions = document.createElement('div');
-      noteActions.classList.add('note-actions');
-      const deleteButton = document.createElement('button');
-      deleteButton.classList.add('delete-note');
-      deleteButton.textContent = 'Delete';
-      deleteButton.onclick = function () {
-        noteContainer.remove();
-      };
-    
-      noteActions.appendChild(deleteButton);
-      noteContainer.appendChild(noteContent);
-      noteContainer.appendChild(noteActions);
-      stickyNotes.appendChild(noteContainer);
-    }
-    
-    function deleteNote(button) {
-      const noteContainer = button.closest('.note-container');
-      noteContainer.remove();
-    }
-  </script>
-  </body>
-</html> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,153 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sticky Notes</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Gloria Hallelujah', cursive;
-      background: linear-gradient(135deg, #2b5876, #4e4376);
-      color: #070101;
-    }
-
-    /* Navbar styles */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #333;
-      padding: 10px 20px;
-      color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    .navbar h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-
-    .navbar input[type="text"] {
-      padding: 8px;
-      border: none;
-      border-radius: 5px;
-      outline: none;
-      font-size: 16px;
-    }
-
-    .navbar .create-note {
-      font-size: 24px;
-      cursor: pointer;
-      background-color: #ff6347;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      transition: background-color 0.3s ease;
-    }
-
-    .navbar .create-note:hover {
-      background-color: #d9534f;
-    }
-
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 20px;
-      gap: 20px;
-      flex-direction: column;
-      height: calc(100vh - 60px);
-    }
-
-    /* Sticky Notes Section */
-    .sticky-notes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      max-width: 100%;
-      justify-content: center;
-    }
-
-    .note-container {
-      position: relative;
-      width: 250px;
-      height: 250px;
-      background: linear-gradient(#f9efaf, #f7e98d);
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      transform: scale(1);
-      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    }
-
-    .note-container:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .note-content {
-      padding: 15px;
-      height: calc(100% - 40px);
-      border: none;
-      outline: none;
-    }
-
-    .note-actions {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-    }
-
-    .delete-note {
-      background-color: #ff6347;
-      color: #fff;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background-color 0.3s ease;
-    }
-
-    .delete-note:hover {
-      background-color: #d9534f;
-    }
-
-    /* Responsive styles */
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .navbar input[type="text"] {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-
-      .container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .sticky-notes {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
 <body>
-  <div class="navbar">
-    <h1>Sticky Notes</h1>
-    <input type="text" id="searchInput" placeholder="Search notes..." oninput="searchNotes()" />
-    <button class="create-note" onclick="createNote()">New Note</button>
-  </div>
-
   <div class="container">
     <!-- Sticky Notes Section -->
     <div class="sticky-notes">
-      <!-- Example pre-loaded notes -->
       <div class="note-container">
         <div class="note-content" contenteditable>
           Create Sticky Note Using HTML, CSS, and JavaScript.
@@ -250,6 +22,7 @@
         </div>
       </div>
 
+      <!-- First CI/CD Note -->
       <div class="note-container">
         <div class="note-content" contenteditable="false">
           This project involves a CI/CD pipeline implemented using GitHub Actions for automated deployment.
@@ -259,6 +32,7 @@
         </div>
       </div>
 
+      <!-- Second CI/CD Note -->
       <div class="note-container">
         <div class="note-content" contenteditable="false">
           It's hosted using Azure Web App to ensure continuous delivery and easy scaling.
@@ -268,102 +42,40 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    // Load notes from localStorage
-    document.addEventListener('DOMContentLoaded', () => {
-      loadNotes();
-    });
-  
-    function createNote() {
-      const stickyNotes = document.querySelector('.sticky-notes');
-      const noteContainer = document.createElement('div');
-      noteContainer.classList.add('note-container');
-  
-      const noteContent = document.createElement('div');
-      noteContent.classList.add('note-content');
-      noteContent.contentEditable = true;
-      noteContent.textContent = 'New note';
-  
-      const noteActions = document.createElement('div');
-      noteActions.classList.add('note-actions');
-  
-      const deleteButton = document.createElement('button');
-      deleteButton.classList.add('delete-note');
-      deleteButton.textContent = 'Delete';
-      deleteButton.onclick = () => {
-        noteContainer.remove();
-        saveNotes();
-      };
-  
-      noteActions.appendChild(deleteButton);
-      noteContainer.appendChild(noteContent);
-      noteContainer.appendChild(noteActions);
-      stickyNotes.appendChild(noteContainer);
-  
-      // Save notes to localStorage after creation
-      saveNotes();
-    }
-  
-    function deleteNote(button) {
-      const noteContainer = button.closest('.note-container');
-      noteContainer.remove();
-      saveNotes();
-    }
-  
-    function saveNotes() {
-      const notes = [];
-      document.querySelectorAll('.note-container').forEach(note => {
-        notes.push({
-          content: note.querySelector('.note-content').innerHTML
-        });
-      });
-      localStorage.setItem('notes', JSON.stringify(notes));
-    }
-  
-    function loadNotes() {
-      const savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
-      const stickyNotes = document.querySelector('.sticky-notes');
-  
-      // Clear existing notes to prevent duplication
-      stickyNotes.innerHTML = '';
-  
-      savedNotes.forEach(note => {
+    <div class="create-note" title="New Notes" onclick="createNote()">+</div>
+
+    <script>
+      function createNote() {
+        const stickyNotes = document.querySelector('.sticky-notes');
         const noteContainer = document.createElement('div');
         noteContainer.classList.add('note-container');
-  
+
         const noteContent = document.createElement('div');
         noteContent.classList.add('note-content');
         noteContent.contentEditable = true;
-        noteContent.innerHTML = note.content;
-  
+        noteContent.textContent = 'New note';
+
         const noteActions = document.createElement('div');
         noteActions.classList.add('note-actions');
-  
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('delete-note');
         deleteButton.textContent = 'Delete';
-        deleteButton.onclick = () => {
+        deleteButton.onclick = function () {
           noteContainer.remove();
-          saveNotes();
         };
-  
+
         noteActions.appendChild(deleteButton);
         noteContainer.appendChild(noteContent);
         noteContainer.appendChild(noteActions);
         stickyNotes.appendChild(noteContainer);
-      });
-    }
-  
-    function searchNotes() {
-      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-      document.querySelectorAll('.note-container').forEach(note => {
-        const content = note.querySelector('.note-content').textContent.toLowerCase();
-        note.style.display = content.includes(searchTerm) ? 'block' : 'none';
-      });
-    }
-  </script>
+      }
+
+      function deleteNote(button) {
+        const noteContainer = button.closest('.note-container');
+        noteContainer.remove();
+      }
+    </script>
 </body>
 
 </html>
