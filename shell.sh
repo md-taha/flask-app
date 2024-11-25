@@ -2,7 +2,7 @@
 
 #This is to clone the app
 clone(){
-        echo "Cloning the flask app..."
+        echo "Cloning the flask app.."
         if [ -d "flask-app" ]; then
                 echo "The code directory already exists. Skipping clone."
         else
